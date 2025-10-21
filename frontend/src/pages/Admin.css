@@ -1,0 +1,263 @@
+/* Admin Dashboard Styles */
+
+.admin-dashboard {
+  min-height: 600px;
+  padding: 2rem 0;
+}
+
+.admin-dashboard h1 {
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.admin-dashboard h2 {
+  color: #34495e;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.nav-tabs .nav-link {
+  cursor: pointer;
+  /* ensure visible by default */
+  color: #2c3e50 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #3498db;
+  border-bottom-color: #3498db;
+}
+
+.nav-tabs .nav-link.active {
+  /* keep active tab dark and more prominent */
+  color: #2c3e50 !important;
+  border-bottom-color: #2c3e50 !important;
+  background-color: transparent;
+  font-weight: 700;
+}
+
+.table {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table thead {
+  background-color: #f8f9fa;
+}
+
+.table thead th {
+  color: #2c3e50;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  padding: 0.4em 0.8em;
+  font-size: 0.85rem;
+}
+
+/* Ensure role badges inside the admin users table are always visible and have good contrast */
+.users-section .badge,
+.users-section td .badge {
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.users-section .badge.bg-primary,
+.users-section td .badge.bg-primary {
+  background-color: #2D6AAB !important; /* strong blue */
+  color: #ffffff !important;
+}
+
+.users-section .badge.bg-danger,
+.users-section td .badge.bg-danger {
+  background-color: #C0392B !important; /* strong red for admin */
+  color: #ffffff !important;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.alert {
+  border-radius: 8px;
+  border: none;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+  color: #3498db;
+}
+
+/* Category button styling - override Bootstrap blue with custom purple */
+.products-section .btn-outline-primary,
+.quantities-section .btn-outline-primary {
+  color: #341539 !important;
+  border-color: #341539 !important;
+  background-color: transparent;
+}
+
+.products-section .btn-outline-primary:hover,
+.quantities-section .btn-outline-primary:hover {
+  color: #ffffff !important;
+  background-color: #341539 !important;
+  border-color: #341539 !important;
+}
+
+.products-section .btn-outline-primary.active,
+.quantities-section .btn-outline-primary.active {
+  color: #ffffff !important;
+  background-color: #341539 !important;
+  border-color: #341539 !important;
+}
+
+/* View Products button styling in orders section */
+.orders-section .btn-info {
+  background-color: #341539 !important;
+  border-color: #341539 !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.375rem 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.orders-section .btn-info:hover {
+  background-color: #2a0e2e !important;
+  border-color: #2a0e2e !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(52, 21, 57, 0.3);
+}
+
+.orders-section .btn-info:focus {
+  background-color: #341539 !important;
+  border-color: #341539 !important;
+  box-shadow: 0 0 0 0.2rem rgba(52, 21, 57, 0.25);
+}
+
+/* Reports Section Styling */
+.reports-section {
+  padding: 1rem 0;
+}
+
+.reports-section h2 {
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.reports-section .text-muted {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.reports-section .card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.reports-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.reports-section .card-title {
+  color: #341539;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reports-section .card-title i {
+  font-size: 1.3rem;
+}
+
+.reports-section .card-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.reports-section .form-label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.reports-section .form-control {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.reports-section .form-control:focus {
+  border-color: #341539;
+  box-shadow: 0 0 0 0.2rem rgba(52, 21, 57, 0.15);
+}
+
+.reports-section .btn-primary {
+  background-color: #341539;
+  border-color: #341539;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.reports-section .btn-primary:hover {
+  background-color: #2a0e2e;
+  border-color: #2a0e2e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 21, 57, 0.3);
+}
+
+.reports-section .btn-primary:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.reports-section .row {
+  margin-top: 1rem;
+}
+
+/* Icons for Bootstrap Icons (if using) */
+.reports-section i.bi {
+  font-size: 1.1rem;
+}
