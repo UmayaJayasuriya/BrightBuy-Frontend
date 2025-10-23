@@ -32,7 +32,7 @@ const Login = ({ isOpen, onClose, onLoginSuccess, onSwitchToSignUp }) => {
     setError('');
 
     try {
-      const response = await axios.post('http://127.0.0.1:8020/auth/login', {
+  const response = await axios.post('https://brightbuy-backend-production-2ccc.up.railway.app/auth/login', {
         identifier: formData.identifier,
         password: formData.password
       });
@@ -70,7 +70,7 @@ const Login = ({ isOpen, onClose, onLoginSuccess, onSwitchToSignUp }) => {
     setError('');
 
     try {
-      const response = await axios.post('http://127.0.0.1:8020/auth/verify-2fa', {
+  const response = await axios.post('https://brightbuy-backend-production-2ccc.up.railway.app/auth/verify-2fa', {
         user_id: userId,
         verification_code: verificationCode
       });

@@ -53,7 +53,7 @@ const SignUp = ({ isOpen, onClose, onSignUpSuccess, onSwitchToLogin }) => {
         }
       };
 
-      const resp = await axios.post('http://127.0.0.1:8020/users', payload);
+  const resp = await axios.post('https://brightbuy-backend-production-2ccc.up.railway.app/users', payload);
       setSuccessMsg('Account created successfully.');
 
       // Optionally, set the authenticated user in parent/context

@@ -83,7 +83,7 @@ const Admin = () => {
         setLoading(false);
         return;
       }
-      const response = await axios.get('http://127.0.0.1:8020/admin/users', config);
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/admin/users', config);
       setUsers(response.data);
     } catch (err) {
       console.error('Fetch users error:', err);
@@ -103,7 +103,7 @@ const Admin = () => {
         setLoading(false);
         return;
       }
-      const response = await axios.get('http://127.0.0.1:8020/admin/orders', config);
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/admin/orders', config);
       setOrders(response.data);
     } catch (err) {
       console.error('Fetch orders error:', err);
@@ -117,7 +117,7 @@ const Admin = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.get('http://127.0.0.1:8020/products/');
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/products/');
       setProducts(response.data);
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to fetch products');
@@ -128,7 +128,7 @@ const Admin = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8020/categories/');
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/categories/');
       setCategories(response.data);
     } catch (err) {
       console.error('Failed to fetch categories', err);
@@ -140,13 +140,13 @@ const Admin = () => {
     setError('');
     try {
       // Fetch all products with their variants
-      const productsResponse = await axios.get('http://127.0.0.1:8020/products/');
+  const productsResponse = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/products/');
       const allProducts = productsResponse.data;
       
       // Fetch variants for each product
       const variantsPromises = allProducts.map(async (product) => {
         try {
-          const response = await axios.get(`http://127.0.0.1:8020/products/${product.product_id}/variants/`);
+          const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/products/${product.product_id}/variants/`);
           return response.data.variants || [];
         } catch (err) {
           console.error(`Failed to fetch variants for product ${product.product_id}`, err);
@@ -185,7 +185,7 @@ const Admin = () => {
       if (newProduct.description) params.append('description', newProduct.description);
       
       const response = await axios.post(
-        `http://127.0.0.1:8020/admin/products?${params.toString()}`,
+  `https://brightbuy-backend-production-2ccc.up.railway.app/admin/products?${params.toString()}`,
         {},
         config
       );
@@ -217,7 +217,7 @@ const Admin = () => {
         setLoading(false);
         return;
       }
-      await axios.delete(`http://127.0.0.1:8020/admin/products/${productId}`, config);
+  await axios.delete(`https://brightbuy-backend-production-2ccc.up.railway.app/admin/products/${productId}`, config);
       setSuccessMessage(`Product "${productName}" deleted successfully!`);
       fetchProducts();
     } catch (err) {
@@ -243,7 +243,7 @@ const Admin = () => {
       }
       
       const response = await axios.put(
-        `http://127.0.0.1:8020/admin/variants/${variantUpdate.variant_id}/quantity?quantity=${variantUpdate.quantity}`,
+  `https://brightbuy-backend-production-2ccc.up.railway.app/admin/variants/${variantUpdate.variant_id}/quantity?quantity=${variantUpdate.quantity}`,
         {},
         config
       );

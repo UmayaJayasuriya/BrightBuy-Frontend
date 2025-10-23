@@ -38,7 +38,7 @@ const Contact = () => {
         message: formData.message
       });
 
-      const response = await axios.post('http://127.0.0.1:8020/contact/', {
+  const response = await axios.post('https://brightbuy-backend-production-2ccc.up.railway.app/contact/', {
         customer_name: formData.name,
         email: formData.email,
         subject_name: formData.subject,

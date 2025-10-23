@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
       if (isAuthenticated && user) {
         try {
           const response = await axios.get(
-            `http://127.0.0.1:8020/favorites/check/${user.user_id}/${product.product_id}`
+            `https://brightbuy-backend-production-2ccc.up.railway.app/favorites/check/${user.user_id}/${product.product_id}`
           );
           setIsFavorite(response.data.is_favorite);
         } catch (error) {
@@ -53,13 +53,13 @@ const ProductCard = ({ product }) => {
     try {
       if (isFavorite) {
         // Remove from favorites
-        await axios.delete(`http://127.0.0.1:8020/favorites/${user.user_id}/${product.product_id}`);
+  await axios.delete(`https://brightbuy-backend-production-2ccc.up.railway.app/favorites/${user.user_id}/${product.product_id}`);
         setIsFavorite(false);
         // small inline feedback instead of blocking alert
         console.info('Removed from favorites');
       } else {
         // Add to favorites
-        await axios.post(`http://127.0.0.1:8020/favorites/${user.user_id}`, {
+  await axios.post(`https://brightbuy-backend-production-2ccc.up.railway.app/favorites/${user.user_id}`, {
           product_id: product.product_id
         });
         setIsFavorite(true);

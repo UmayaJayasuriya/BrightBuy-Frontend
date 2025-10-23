@@ -27,11 +27,11 @@ const Profile = () => {
         setLoading(true);
         
         // Fetch user details
-        const userResponse = await axios.get(`http://127.0.0.1:8020/users/${user.user_id}`);
+  const userResponse = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/users/${user.user_id}`);
         setUserDetails(userResponse.data);
         
         // Fetch user's orders
-        const ordersResponse = await axios.get(`http://127.0.0.1:8020/orders/user/${user.user_id}`);
+  const ordersResponse = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/orders/user/${user.user_id}`);
         setOrders(ordersResponse.data);
         
       } catch (err) {

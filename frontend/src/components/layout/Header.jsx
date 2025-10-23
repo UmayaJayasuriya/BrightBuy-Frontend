@@ -30,7 +30,7 @@ const Header = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8020/categories/');
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/categories/');
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -49,7 +49,7 @@ const Header = () => {
       }
 
       try {
-        const response = await axios.get(`http://127.0.0.1:8020/cart/${user.user_id}`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/${user.user_id}`);
         const cartData = response.data;
         if (cartData && cartData.cart_items) {
           // Calculate total count

@@ -30,7 +30,7 @@ const Favorites = () => {
   const fetchFavorites = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://127.0.0.1:8020/favorites/${user.user_id}`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/favorites/${user.user_id}`);
       setFavorites(response.data);
     } catch (err) {
       console.error('Error fetching favorites:', err);
@@ -42,7 +42,7 @@ const Favorites = () => {
 
   const handleRemoveFavorite = async (productId) => {
     try {
-      await axios.delete(`http://127.0.0.1:8020/favorites/${user.user_id}/${productId}`);
+  await axios.delete(`https://brightbuy-backend-production-2ccc.up.railway.app/favorites/${user.user_id}/${productId}`);
       setFavorites(favorites.filter(fav => fav.product_id !== productId));
       alert('Removed from favorites!');
     } catch (err) {

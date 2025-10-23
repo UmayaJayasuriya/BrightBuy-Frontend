@@ -32,7 +32,7 @@ const Single = () => {
       setError('');
       try {
         // Fetch product with variants
-        const response = await axios.get(`http://127.0.0.1:8020/products/${id}/variants/`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/products/${id}/variants/`);
         setProductData(response.data);
         
         // Set first variant as selected by default
@@ -43,7 +43,7 @@ const Single = () => {
         // Fetch related products (from same category)
         if (response.data.category) {
           const relatedResponse = await axios.get(
-            `http://127.0.0.1:8020/products/?category_name=${encodeURIComponent(response.data.category.category_name)}`
+            `https://brightbuy-backend-production-2ccc.up.railway.app/products/?category_name=${encodeURIComponent(response.data.category.category_name)}`
           );
           // Filter out current product and take first 4
           const related = relatedResponse.data.filter(p => p.product_id !== parseInt(id)).slice(0, 4);
@@ -79,7 +79,7 @@ const Single = () => {
     try {
       // Add to cart via backend API
       const response = await axios.post(
-        `http://127.0.0.1:8020/cart/add?user_id=${user.user_id}`,
+  `https://brightbuy-backend-production-2ccc.up.railway.app/cart/add?user_id=${user.user_id}`,
         {
           variant_id: selectedVariant.variant_id,
           quantity: quantity
@@ -145,7 +145,7 @@ const Single = () => {
       console.log('Deleting variant with token:', token.substring(0, 20) + '...');
       
       await axios.delete(
-        `http://127.0.0.1:8020/admin/variants/${selectedVariant.variant_id}`,
+  `https://brightbuy-backend-production-2ccc.up.railway.app/admin/variants/${selectedVariant.variant_id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -156,7 +156,7 @@ const Single = () => {
       alert(`Variant "${selectedVariant.variant_name}" deleted successfully!`);
       
       // Refresh the product data to show updated variants
-      const response = await axios.get(`http://127.0.0.1:8020/products/${id}/variants/`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/products/${id}/variants/`);
       setProductData(response.data);
       
       // Select first remaining variant or reload to show "No variants available"

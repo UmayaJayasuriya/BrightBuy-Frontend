@@ -18,7 +18,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8020/categories/');
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/categories/');
         console.log('Categories fetched:', response.data);
         setCategories(response.data);
       } catch (error) {

@@ -120,7 +120,7 @@ const Payment = () => {
       };
 
       // Submit the order to backend
-      const response = await axios.post('http://127.0.0.1:8020/orders/checkout', orderWithCard);
+  const response = await axios.post('https://brightbuy-backend-production-2ccc.up.railway.app/orders/checkout', orderWithCard);
       
       if (response.data.order_id) {
         alert(`Payment successful! Your order #${response.data.order_id} has been placed.\nTotal: $${parseFloat(response.data.total_amount).toFixed(2)}`);

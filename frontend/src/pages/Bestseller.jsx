@@ -20,7 +20,7 @@ const Bestseller = () => {
         setLoading(true);
         // Fetch actual bestselling products from the backend
         // This endpoint returns top 10 products by total quantity sold
-        const response = await axios.get('http://127.0.0.1:8020/products/bestsellers/');
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/products/bestsellers/');
         
         if (response.data && response.data.length > 0) {
           setBestsellerProducts(response.data);

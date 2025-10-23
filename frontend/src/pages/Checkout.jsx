@@ -47,11 +47,11 @@ const Checkout = () => {
         setLoading(true);
         
         // Fetch cart
-        const cartResponse = await axios.get(`http://127.0.0.1:8020/cart/${user.user_id}`);
+  const cartResponse = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/${user.user_id}`);
         setCartData(cartResponse.data);
         
         // Fetch cities
-        const citiesResponse = await axios.get('http://127.0.0.1:8020/locations/cities');
+  const citiesResponse = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/locations/cities');
         setCities(citiesResponse.data);
       } catch (err) {
         console.error('Error fetching data:', err);
@@ -70,7 +70,7 @@ const Checkout = () => {
       if (!user || !formData.deliveryMethod) return;
 
       try {
-        let url = `http://127.0.0.1:8020/cart/delivery-estimate/${user.user_id}?delivery_method=${formData.deliveryMethod}`;
+  let url = `https://brightbuy-backend-production-2ccc.up.railway.app/cart/delivery-estimate/${user.user_id}?delivery_method=${formData.deliveryMethod}`;
         
         if (formData.deliveryMethod === 'home_delivery' && formData.city) {
           url += `&city=${encodeURIComponent(formData.city)}`;
@@ -146,7 +146,7 @@ const Checkout = () => {
     // For COD, process order directly
     setProcessingOrder(true);
     try {
-      const response = await axios.post('http://127.0.0.1:8020/orders/checkout', orderData);
+  const response = await axios.post('https://brightbuy-backend-production-2ccc.up.railway.app/orders/checkout', orderData);
 
       const order = response.data;
       console.log('Order created:', order);

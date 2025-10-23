@@ -110,7 +110,7 @@ const Admin = () => {
     try {
       const config = axiosConfig();
       if (!config.headers.Authorization) { setError('Not authenticated. Please log in as admin.'); return; }
-      const res = await axios.get('http://127.0.0.1:8020/admin/users', config);
+  const res = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/admin/users', config);
       setUsers(res.data);
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to fetch users');
@@ -122,7 +122,7 @@ const Admin = () => {
     try {
       const config = axiosConfig();
       if (!config.headers.Authorization) { setError('Not authenticated. Please log in as admin.'); return; }
-      const res = await axios.get('http://127.0.0.1:8020/admin/orders', config);
+  const res = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/admin/orders', config);
       setOrders(res.data);
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to fetch orders');
@@ -132,7 +132,7 @@ const Admin = () => {
   const fetchProducts = async () => {
     setLoading(true); setError('');
     try {
-      const res = await axios.get('http://127.0.0.1:8020/products/');
+  const res = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/products/');
       setProducts(res.data);
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to fetch products');
@@ -141,7 +141,7 @@ const Admin = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8020/categories/');
+  const res = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/categories/');
       setCategories(res.data);
     } catch (err) {
       // Non-fatal
@@ -152,12 +152,12 @@ const Admin = () => {
     setLoading(true); setError('');
     try {
       // get all products, then per-product variants
-      const prodRes = await axios.get('http://127.0.0.1:8020/products/');
+  const prodRes = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/products/');
       const allProducts = prodRes.data || [];
       const variantLists = await Promise.all(
         allProducts.map(async (p) => {
           try {
-            const res = await axios.get(`http://127.0.0.1:8020/products/${p.product_id}/variants/`);
+            const res = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/products/${p.product_id}/variants/`);
             return res.data.variants || [];
           } catch {
             return [];
@@ -182,7 +182,7 @@ const Admin = () => {
         description: newProduct.description || null,
         variants: newProduct.variants.length > 0 ? newProduct.variants : null
       };
-      const res = await axios.post('http://127.0.0.1:8020/admin/products', payload, config);
+  const res = await axios.post('https://brightbuy-backend-production-2ccc.up.railway.app/admin/products', payload, config);
       setSuccessMessage(`Product "${res.data.product_name}" added successfully!`);
       setNewProduct({ product_name: '', category_id: '', description: '', variants: [] });
       setNewVariant({ variant_name: '', price: '', quantity: '', SKU: '' });
@@ -209,7 +209,7 @@ const Admin = () => {
     try {
       const config = axiosConfig();
       if (!config.headers.Authorization) { setError('Not authenticated. Please log in as admin.'); return; }
-      await axios.delete(`http://127.0.0.1:8020/admin/products/${productId}`, config);
+  await axios.delete(`https://brightbuy-backend-production-2ccc.up.railway.app/admin/products/${productId}`, config);
       setSuccessMessage(`Product "${productName}" deleted successfully!`);
       fetchProducts();
     } catch (err) {
@@ -231,7 +231,7 @@ const Admin = () => {
       };
       
       const res = await axios.post(
-        `http://127.0.0.1:8020/admin/products/${addVariantToProduct.product_id}/variants`,
+  `https://brightbuy-backend-production-2ccc.up.railway.app/admin/products/${addVariantToProduct.product_id}/variants`,
         payload,
         config
       );
@@ -268,7 +268,7 @@ const Admin = () => {
 
   const fetchProductVariants = async (productId) => {
     try {
-      const res = await axios.get(`http://127.0.0.1:8020/products/${productId}/variants/`);
+  const res = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/products/${productId}/variants/`);
       setProductVariants(prev => ({ ...prev, [productId]: res.data.variants || [] }));
     } catch (err) {
       setProductVariants(prev => ({ ...prev, [productId]: [] }));
@@ -281,7 +281,7 @@ const Admin = () => {
       const config = axiosConfig();
       if (!config.headers.Authorization) { setError('Not authenticated. Please log in as admin.'); return; }
       const res = await axios.put(
-        `http://127.0.0.1:8020/admin/variants/${variantUpdate.variant_id}/quantity?quantity=${variantUpdate.quantity}`,
+  `https://brightbuy-backend-production-2ccc.up.railway.app/admin/variants/${variantUpdate.variant_id}/quantity?quantity=${variantUpdate.quantity}`,
         {},
         config
       );
@@ -298,7 +298,7 @@ const Admin = () => {
     setLoading(true); setError(''); setSuccessMessage('');
     const config = axiosConfig();
     if (!config.headers.Authorization) { setError('Not authenticated. Please log in as admin.'); setLoading(false); return; }
-    axios.put(`http://127.0.0.1:8020/analytics/orders/${orderId}/status`, { status: 'Delivered' }, config)
+  axios.put(`https://brightbuy-backend-production-2ccc.up.railway.app/analytics/orders/${orderId}/status`, { status: 'Delivered' }, config)
       .then(() => {
         setSuccessMessage(`Order ${orderId} marked as Delivered`);
         fetchOrders();
@@ -314,7 +314,7 @@ const Admin = () => {
     setLoading(true); setError(''); setSuccessMessage('');
     const config = axiosConfig();
     if (!config.headers.Authorization) { setError('Not authenticated. Please log in as admin.'); setLoading(false); return; }
-    axios.put(`http://127.0.0.1:8020/admin/orders/${orderId}/payment-status`, {}, config)
+  axios.put(`https://brightbuy-backend-production-2ccc.up.railway.app/admin/orders/${orderId}/payment-status`, {}, config)
       .then((response) => {
         setSuccessMessage(response.data.message || `Payment marked as completed for order ${orderId}`);
         fetchOrders();
@@ -330,7 +330,7 @@ const Admin = () => {
     if (!expandedOrders[orderId] && !orderItems[orderId]) {
       try {
         const config = axiosConfig();
-        const res = await axios.get(`http://127.0.0.1:8020/admin/orders/${orderId}/items`, config);
+  const res = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/admin/orders/${orderId}/items`, config);
         setOrderItems(prev => ({ ...prev, [orderId]: res.data }));
       } catch {
         setOrderItems(prev => ({ ...prev, [orderId]: [] }));
@@ -741,7 +741,7 @@ const Admin = () => {
                                       try {
                                         const config = axiosConfig();
                                         if (!config.headers.Authorization) { setError('Not authenticated. Please log in as admin.'); setLoading(false); return; }
-                                        await axios.delete(`http://127.0.0.1:8020/admin/variants/${variant.variant_id}`, config);
+                                        await axios.delete(`https://brightbuy-backend-production-2ccc.up.railway.app/admin/variants/${variant.variant_id}`, config);
                                         setSuccessMessage(`Variant '${variant.variant_name}' deleted successfully!`);
                                         fetchProductVariants(p.product_id);
                                         fetchVariants();
@@ -853,7 +853,7 @@ const Admin = () => {
         return;
       }
 
-      const response = await axios.get(`http://127.0.0.1:8020${endpoint}`, {
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app${endpoint}`, {
         ...config,
         responseType: 'blob'
       });

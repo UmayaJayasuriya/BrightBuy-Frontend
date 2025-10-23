@@ -42,7 +42,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8020/categories/');
+  const response = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/categories/');
         setCategories(response.data);
       } catch (err) {
         console.error('Error fetching categories:', err);
@@ -58,7 +58,7 @@ const Shop = () => {
       setLoading(true);
       setError('');
       try {
-        let url = 'http://127.0.0.1:8020/products/';
+  let url = 'https://brightbuy-backend-production-2ccc.up.railway.app/products/';
         
         // Only filter by category if a specific category is selected (not "All Category")
         if (selectedCategory && selectedCategory !== 'All Category') {

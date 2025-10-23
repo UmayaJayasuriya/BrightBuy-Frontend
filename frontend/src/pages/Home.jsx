@@ -17,7 +17,7 @@ const Home = () => {
       setLoading(true);
       try {
         // Fetch all categories
-        const categoriesResponse = await axios.get('http://127.0.0.1:8020/categories/');
+  const categoriesResponse = await axios.get('https://brightbuy-backend-production-2ccc.up.railway.app/categories/');
         const categories = categoriesResponse.data;
 
         // Take first 6 categories
@@ -26,7 +26,7 @@ const Home = () => {
         // Fetch one product from each category
         const productsPromises = selectedCategories.map(async (category) => {
           const response = await axios.get(
-            `http://127.0.0.1:8020/products/?category_name=${encodeURIComponent(category.category_name)}`
+            `https://brightbuy-backend-production-2ccc.up.railway.app/products/?category_name=${encodeURIComponent(category.category_name)}`
           );
           // Return the first product from this category
           return response.data[0];

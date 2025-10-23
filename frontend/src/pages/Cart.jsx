@@ -26,7 +26,7 @@ const Cart = () => {
 
       try {
         setLoading(true);
-        const response = await axios.get(`http://127.0.0.1:8020/cart/${user.user_id}`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/${user.user_id}`);
         setCartData(response.data);
         console.log('Cart data:', response.data);
       } catch (err) {
@@ -44,10 +44,10 @@ const Cart = () => {
     if (newQuantity < 1) return;
 
     try {
-      await axios.put(`http://127.0.0.1:8020/cart/update/${cartItemId}?quantity=${newQuantity}`);
+  await axios.put(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/update/${cartItemId}?quantity=${newQuantity}`);
       
       // Refresh cart
-      const response = await axios.get(`http://127.0.0.1:8020/cart/${user.user_id}`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/${user.user_id}`);
       setCartData(response.data);
     } catch (err) {
       console.error('Error updating quantity:', err);
@@ -59,10 +59,10 @@ const Cart = () => {
     if (!window.confirm('Remove this item from cart?')) return;
 
     try {
-      await axios.delete(`http://127.0.0.1:8020/cart/remove/${cartItemId}`);
+  await axios.delete(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/remove/${cartItemId}`);
       
       // Refresh cart
-      const response = await axios.get(`http://127.0.0.1:8020/cart/${user.user_id}`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/${user.user_id}`);
       setCartData(response.data);
     } catch (err) {
       console.error('Error removing item:', err);
@@ -74,10 +74,10 @@ const Cart = () => {
     if (!window.confirm('Clear all items from cart?')) return;
 
     try {
-      await axios.delete(`http://127.0.0.1:8020/cart/clear/${user.user_id}`);
+  await axios.delete(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/clear/${user.user_id}`);
       
       // Refresh cart
-      const response = await axios.get(`http://127.0.0.1:8020/cart/${user.user_id}`);
+  const response = await axios.get(`https://brightbuy-backend-production-2ccc.up.railway.app/cart/${user.user_id}`);
       setCartData(response.data);
     } catch (err) {
       console.error('Error clearing cart:', err);
