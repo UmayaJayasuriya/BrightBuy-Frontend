@@ -315,15 +315,26 @@ const Single = () => {
                 <div className="main-image mb-3">
                   <img
                     src={selectedVariant ? `/img/variants/${selectedVariant.variant_id}.png` : `/img/products/${productData.product_id}.png`}
+                    data-base-src={selectedVariant ? `/img/variants/${selectedVariant.variant_id}` : `/img/products/${productData.product_id}`}
                     className="img-fluid rounded"
                     alt={selectedVariant?.variant_name || productData.product_name}
                     style={{ width: '100%', height: '350px', objectFit: 'contain', backgroundColor: '#f8f9fa', padding: '20px' }}
                     onError={(e) => {
-                      if (e.target.src.endsWith('.png')) {
-                        e.target.src = selectedVariant ? `/img/variants/${selectedVariant.variant_id}.jpg` : `/img/products/${productData.product_id}.jpg`;
-                      } else {
-                        e.target.src = '/img/product-1.png';
-                      }
+                      // try common extensions before falling back to placeholder
+                      const base = e.target.getAttribute('data-base-src');
+                      const exts = ['png', 'jpg', 'jpeg', 'webp', 'avif'];
+                      const tryNext = (idx) => {
+                        if (idx >= exts.length) {
+                          e.target.src = '/img/product-1.png';
+                          return;
+                        }
+                        const candidate = `${base}.${exts[idx]}`;
+                        // quick probe by setting and letting onError continue the chain
+                        e.target.onerror = () => tryNext(idx + 1);
+                        e.target.src = candidate;
+                      };
+                      // if current src already matches base with an ext we want to try next ones
+                      tryNext(0);
                     }}
                   />
                 </div>

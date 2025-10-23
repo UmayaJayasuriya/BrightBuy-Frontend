@@ -85,17 +85,23 @@ const ProductCard = ({ product }) => {
         <div className="position-relative">
           <img
             src={`/img/products/${product.product_id}.png`}
+            data-base-src={`/img/products/${product.product_id}`}
             className="img-fluid w-100"
             alt={product.product_name}
             style={{ height: '250px', objectFit: 'cover', backgroundColor: '#f8f9fa' }}
             onError={(e) => {
-              // Fallback to .jpg if .png doesn't exist
-              if (e.target.src.endsWith('.png')) {
-                e.target.src = `/img/products/${product.product_id}.jpg`;
-              } else if (e.target.src.endsWith('.jpg')) {
-                // Fallback to placeholder if neither exists
-                e.target.src = '/img/product-1.png';
-              }
+              const base = e.target.getAttribute('data-base-src');
+              const exts = ['png', 'jpg', 'jpeg', 'webp', 'avif'];
+              const tryNext = (idx) => {
+                if (idx >= exts.length) {
+                  e.target.src = '/img/product-1.png';
+                  return;
+                }
+                const candidate = `${base}.${exts[idx]}`;
+                e.target.onerror = () => tryNext(idx + 1);
+                e.target.src = candidate;
+              };
+              tryNext(0);
             }}
           />
           <div className="product-overlay">
