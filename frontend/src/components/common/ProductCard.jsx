@@ -79,12 +79,15 @@ const ProductCard = ({ product }) => {
     }
   };
 
+  console.log("Image path:", `/img/products/${product.product_id}.png`);
+
   return (
     <div className="product-card">
       <div className="product-item border h-100">
         <div className="position-relative">
           <img
             src={`/img/products/${product.product_id}.png`}
+            
             data-base-src={`/img/products/${product.product_id}`}
             className="img-fluid w-100"
             alt={product.product_name}

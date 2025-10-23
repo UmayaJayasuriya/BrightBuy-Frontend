@@ -314,8 +314,8 @@ const Single = () => {
               <div className="product-images">
                 <div className="main-image mb-3">
                   <img
-                    src={selectedVariant ? `/img/variants/${selectedVariant.variant_id}.png` : `/img/products/${productData.product_id}.png`}
-                    data-base-src={selectedVariant ? `/img/variants/${selectedVariant.variant_id}` : `/img/products/${productData.product_id}`}
+                    src={selectedVariant ? `/img/Variants/${selectedVariant.variant_id}.png` : `/img/products/${productData.product_id}.png`}
+                    data-base-src={selectedVariant ? `/img/Variants/${selectedVariant.variant_id}` : `/img/products/${productData.product_id}`}
                     className="img-fluid rounded"
                     alt={selectedVariant?.variant_name || productData.product_name}
                     style={{ width: '100%', height: '350px', objectFit: 'contain', backgroundColor: '#f8f9fa', padding: '20px' }}
@@ -360,16 +360,24 @@ const Single = () => {
                         onClick={() => handleVariantSelect(variant)}
                       >
                         <img
-                          src={`/img/variants/${variant.variant_id}.png`}
+                          src={`/img/Variants/${variant.variant_id}.png`}
+                          data-base-src={`/img/Variants/${variant.variant_id}`}
                           className="img-fluid w-100 h-100"
                           alt={variant.variant_name}
                           style={{ objectFit: 'contain', backgroundColor: '#f8f9fa', padding: '10px' }}
                           onError={(e) => {
-                            if (e.target.src.endsWith('.png')) {
-                              e.target.src = `/img/variants/${variant.variant_id}.jpg`;
-                            } else {
-                              e.target.src = '/img/product-1.png';
-                            }
+                            const base = e.target.getAttribute('data-base-src');
+                            const exts = ['png', 'jpg', 'jpeg', 'webp', 'avif'];
+                            const tryNext = (idx) => {
+                              if (idx >= exts.length) {
+                                e.target.src = '/img/product-1.png';
+                                return;
+                              }
+                              const candidate = `${base}.${exts[idx]}`;
+                              e.target.onerror = () => tryNext(idx + 1);
+                              e.target.src = candidate;
+                            };
+                            tryNext(0);
                           }}
                         />
                         {/* Out of Stock Badge */}
